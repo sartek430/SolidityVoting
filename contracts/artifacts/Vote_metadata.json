@@ -1,0 +1,65 @@
+{
+	"compiler": {
+		"version": "0.8.29+commit.ab55807c"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "whiteList",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Vote.sol": "Vote"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Vote.sol": {
+			"keccak256": "0x06c765aa7791acf6afe2f0fca6bc3f4cbb52a8251b3257d01b78b64fdc86e8b5",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://08a7ffa2eaf8d16a3ea2fea83cc1efad1b8370546a2ec4fcdfd608d02785916a",
+				"dweb:/ipfs/QmPuE6evrfDnwi7aY1VRqUBHFiZpHXm43ZAKMH3NEmTHvn"
+			]
+		}
+	},
+	"version": 1
+}
