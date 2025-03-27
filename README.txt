@@ -1,28 +1,70 @@
-REMIX DEFAULT WORKSPACE
+# Voting Smart Contract
 
-Remix default workspace is present when:
-i. Remix loads for the very first time 
-ii. A new workspace is created with 'Default' template
-iii. There are no files existing in the File Explorer
+## Description
+Ce projet est un **contrat intelligent Solidity** permettant de gérer un processus de vote en plusieurs étapes. Seuls les utilisateurs enregistrés peuvent proposer et voter pour des propositions. Le contrat suit un **workflow strict** pour assurer l'intégrité du processus de vote.
 
-This workspace contains 3 directories:
+## Fonctionnalités
+- **Enregistrement des électeurs** par l'administrateur.
+- **Gestion des propositions** de vote.
+- **Ouverture et fermeture des sessions de vote**.
+- **Comptage des votes et annonce du gagnant**.
+- **Suivi du workflow via un état du contrat**.
 
-1. 'contracts': Holds three contracts with increasing levels of complexity.
-2. 'scripts': Contains four typescript files to deploy a contract. It is explained below.
-3. 'tests': Contains one Solidity test file for 'Ballot' contract & one JS test file for 'Storage' contract.
+## Technologies utilisées
+- **Solidity** (>=0.7.0 <0.9.0)
+- **OpenZeppelin** (Ownable.sol pour la gestion des permissions)
 
-SCRIPTS
+## Installation
+### 1. Cloner le projet
+```sh
+git clone https://github.com/sartek430/SolidityVoting.git
+cd votre-repo
+```
 
-The 'scripts' folder has four typescript files which help to deploy the 'Storage' contract using 'web3.js' and 'ethers.js' libraries.
+## Déploiement
+Le contrat peut être déployé sur **Remix IDE**, **Hardhat**, ou **Truffle**. Exemple avec Remix IDE :
+1. Ouvrir [Remix IDE](https://remix.ethereum.org/)
+2. Importer le fichier `Voting.sol`
+3. Compiler et déployer sur un réseau de test (Goerli, Sepolia, etc.)
 
-For the deployment of any other contract, just update the contract name from 'Storage' to the desired contract and provide constructor arguments accordingly 
-in the file `deploy_with_ethers.ts` or  `deploy_with_web3.ts`
+## Explication des Fonctions Principales
+### 1. **Gestion des électeurs**
+- `registerVoter(address voter)`: Ajoute un électeur à la liste (Admin seulement).
+- `VoterRegistered(address voterAddress)`: Événement déclenché lors de l'ajout d'un électeur.
 
-In the 'tests' folder there is a script containing Mocha-Chai unit tests for 'Storage' contract.
+### 2. **Propositions**
+- `proposeProposals(string memory description)`: Ajoute une proposition.
+- `ProposalRegistered(uint proposalId)`: Événement déclenché lors de l'ajout d'une proposition.
 
-To run a script, right click on file name in the file explorer and click 'Run'. Remember, Solidity file must already be compiled.
-Output from script will appear in remix terminal.
+### 3. **Vote**
+- `vote(address voter, uint proposalId)`: Permet à un électeur de voter.
+- `Voted(address voter, uint proposalId)`: Événement déclenché lorsqu'un vote est enregistré.
 
-Please note, require/import is supported in a limited manner for Remix supported modules.
-For now, modules supported by Remix are ethers, web3, swarmgw, chai, multihashes, remix and hardhat only for hardhat.ethers object/plugin.
-For unsupported modules, an error like this will be thrown: '<module_name> module require is not supported by Remix IDE' will be shown.
+### 4. **Décompte des votes et résultat**
+- `tallyVotes()`: Décompte des votes et définit le gagnant.
+- `getWinnerProposal()`: Retourne la proposition gagnante.
+
+## Workflow du Vote
+1. **Enregistrement des électeurs**
+2. **Ouverture des propositions**
+3. **Fermeture des propositions**
+4. **Début du vote**
+5. **Fin du vote**
+6. **Décompte des votes et annonce du gagnant**
+
+## Sécurité et Restrictions
+- Seul l'**administrateur** (déployeur du contrat) peut gérer les électeurs et le workflow.
+- Un **électeur ne peut voter qu'une seule fois**.
+- Le **workflow suit une progression stricte**, empêchant toute manipulation.
+
+## Améliorations possibles
+- **Utilisation d'un système de signature** pour la vérification des votes.
+- **Interface frontend** pour faciliter l'utilisation du contrat.
+- **Déploiement sur une blockchain publique**.
+
+## License
+Ce projet est sous licence **GPL-3.0**.
+
+---
+**Auteur :** [Votre Nom](https://github.com/votre-utilisateur)
+
